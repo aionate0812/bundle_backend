@@ -7,9 +7,8 @@ CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
     uid VARCHAR UNIQUE NOT NULL,
-    username VARCHAR(50) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR NOT NULL
+    username VARCHAR(50) NULL,
+    email VARCHAR(255) UNIQUE NOT NULL
 );
 
 CREATE TABLE trip
@@ -48,7 +47,7 @@ CREATE TABLE categories
 CREATE TABLE items
 (
     id SERIAL PRIMARY KEY,
-    packed BIT NOT NULL,
+    packed BOOLEAN NOT NULL,
     quantity INT NOT NULL,
     bag_id INT NOT NULL,
     category_id INT NOT NULL,
@@ -87,7 +86,7 @@ CREATE TABLE todo
 (
     id SERIAL PRIMARY KEY,
     task_name VARCHAR(50),
-    complete BIT NOT NULL,
+    complete BOOLEAN NOT NULL,
     todolist_id INT NOT NULL,
     FOREIGN KEY (todolist_id) REFERENCES todolist(id)
 );
