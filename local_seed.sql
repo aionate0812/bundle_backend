@@ -47,6 +47,7 @@ CREATE TABLE categories
 CREATE TABLE items
 (
     id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
     packed BOOLEAN NOT NULL,
     quantity INT NOT NULL,
     bag_id INT NOT NULL,
@@ -87,6 +88,7 @@ CREATE TABLE todo
     id SERIAL PRIMARY KEY,
     task_name VARCHAR(50),
     complete BOOLEAN NOT NULL,
+    item_id INT NULL,
     todolist_id INT NOT NULL,
     FOREIGN KEY (todolist_id) REFERENCES todolist(id)
 );
