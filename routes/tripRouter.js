@@ -35,10 +35,20 @@ tripRouter.put('/:id', (req, res, next) => {
     TripService.updateTrip(req.body, id)
         .then(data => {
             res.status(200);
-            res.json({ success: true })
+            res.json({ success: `Updated Trip #${id}` })
         })
         .catch(err => {
             next(err);
+        })
+})
+
+tripRouter.delete('/:id', (req,res, next) => {
+    const { id } = req.params;
+    
+    TripService.delete(id)
+        .then(data => {
+            res.status(200);
+            res.json({ success: `Deleted Trip #${id}` })
         })
 })
 
