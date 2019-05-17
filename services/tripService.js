@@ -3,7 +3,7 @@ const TripService = {};
 
 TripService.create = (name, country, city, departure_date, return_date, user_id) => {
     const sql = `
-    INSERT INTO trip (name, country, city, departure_date, return_date, user_id)
+    INSERT INTO trips (name, country, city, departure_date, return_date, user_id)
     VALUES ($[name], $[country], $[city], $[departure_date], $[return_date], $[user_id])
     RETURNING id;
     `;
@@ -13,7 +13,7 @@ TripService.create = (name, country, city, departure_date, return_date, user_id)
 TripService.read = (id) => {
     const sql = `
     SELECT *
-    FROM trip t
+    FROM trips t
     WHERE t.id = $[id]
     `;
     return db.one(sql, { id });
@@ -21,7 +21,7 @@ TripService.read = (id) => {
 
 TripService.updateTrip = (data, id) => {
     const keys = Object.keys(data);
-    let sql = 'UPDATE trip SET ';
+    let sql = 'UPDATE trips SET ';
 
     for (let i = 0; i < keys.length; i++) {
         if (keys[i] === 'id') continue;
@@ -37,10 +37,11 @@ TripService.updateTrip = (data, id) => {
 
 TripService.delete = (id) => {
     const sql = `
-    DELETE FROM trip t
+    DELETE FROM trips t
     WHERE t.id = $[id]
     `;
     return db.none(sql, { id });
+
 }
 
 module.exports = TripService;
