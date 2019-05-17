@@ -15,7 +15,7 @@ app.use(cors())
 
 
 app.use('/trip', tripRouter);
-app.use('bag', bagRouter);
+app.use('/bag', bagRouter);
 
 app.get('/', (req, res) => {
     res.send('hello')
