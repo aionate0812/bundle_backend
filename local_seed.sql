@@ -160,4 +160,4 @@ INSERT INTO itinerary_types (name)
 VALUES ('entertainment');
 
 INSERT INTO itinerary_types (name)
-VALUES ('entertainment');
+VALUES ('event');
