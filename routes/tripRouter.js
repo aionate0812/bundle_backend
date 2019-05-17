@@ -16,5 +16,17 @@ tripRouter.post('/', (req, res, next) => {
         })
 });
 
+tripRouter.put('/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    TripService.updateTrip(req.body, id)    
+    .then(data => {
+            res.status(200);
+            res.json({success: true})
+        })
+        .catch(err => {
+            next(err);
+        })
+})
 
 module.exports = tripRouter;
