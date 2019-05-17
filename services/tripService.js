@@ -3,7 +3,7 @@ const TripService = {};
 
 TripService.create = (name, country, city, departure_date, return_date, user_id) => {
     const sql = `
-    INSERT INTO trip (name, country, city, departure_date, return_date, user_id)
+    INSERT INTO trips (name, country, city, departure_date, return_date, user_id)
     VALUES ($[name], $[country], $[city], $[departure_date], $[return_date], $[user_id])
     RETURNING id;
     `;
@@ -13,7 +13,7 @@ TripService.create = (name, country, city, departure_date, return_date, user_id)
 TripService.read = (id) => {
 const sql = `
 SELECT *
-FROM trip t
+FROM trips t
 WHERE t.id = $[id]
 `
 return db.one(sql, { id });
