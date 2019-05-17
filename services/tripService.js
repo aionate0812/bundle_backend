@@ -35,5 +35,12 @@ TripService.updateTrip = (data, id) => {
     return db.none(sql, { ...data, id });
 }
 
+TripService.delete = (id) => {
+    const sql = `
+    DELETE FROM trip t
+    WHERE t.id = $[id]
+    `;
+    return db.none(sql, { id });
+}
 
 module.exports = TripService;
