@@ -11,7 +11,7 @@ CREATE TABLE users
     email VARCHAR(255) UNIQUE NOT NULL
 );
 
-CREATE TABLE trip
+CREATE TABLE trips
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -23,19 +23,19 @@ CREATE TABLE trip
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE bag_type
+CREATE TABLE bag_types
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50)
 );
 
-CREATE TABLE bag
+CREATE TABLE bags
 (
     id SERIAL PRIMARY KEY,
     trip_id INT NOT NULL,
     type_id INT NOT NULL,
-    FOREIGN KEY (trip_id) REFERENCES trip(id),
-    FOREIGN KEY (type_id) REFERENCES bag_type(id)
+    FOREIGN KEY (trip_id) REFERENCES trips(id),
+    FOREIGN KEY (type_id) REFERENCES bag_types(id)
 );
 
 CREATE TABLE categories
@@ -52,11 +52,11 @@ CREATE TABLE items
     quantity INT NOT NULL,
     bag_id INT NOT NULL,
     category_id INT NOT NULL,
-    FOREIGN KEY (bag_id) REFERENCES bag(id),
+    FOREIGN KEY (bag_id) REFERENCES bags(id),
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
-CREATE TABLE itinerary_type
+CREATE TABLE itinerary_types
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50)
@@ -71,8 +71,8 @@ CREATE TABLE itinerary
     note VARCHAR (255),
     trip_id INT NOT NULL,
     type_id INT NOT NULL,
-    FOREIGN KEY (type_id) REFERENCES itinerary_type(id),
-    FOREIGN KEY (trip_id) REFERENCES trip(id)
+    FOREIGN KEY (type_id) REFERENCES itinerary_types(id),
+    FOREIGN KEY (trip_id) REFERENCES trips(id)
 );
 
 CREATE TABLE todolist
@@ -80,10 +80,10 @@ CREATE TABLE todolist
     id SERIAL PRIMARY KEY,
     name VARCHAR(50),
     trip_id INT NOT NULL,
-    FOREIGN KEY (trip_id) REFERENCES trip(id)
+    FOREIGN KEY (trip_id) REFERENCES trips(id)
 );
 
-CREATE TABLE todo
+CREATE TABLE todos
 (
     id SERIAL PRIMARY KEY,
     task_name VARCHAR(50),
@@ -92,3 +92,72 @@ CREATE TABLE todo
     todolist_id INT NOT NULL,
     FOREIGN KEY (todolist_id) REFERENCES todolist(id)
 );
+
+-- INSERT BAG TYPES
+INSERT INTO bag_types (name)
+VALUES ('personal');
+
+INSERT INTO bag_types (name)
+VALUES ('carry-on');
+
+INSERT INTO bag_types (name)
+VALUES ('checked');
+
+-- INSERT CATEGORIES
+INSERT INTO categories (name)
+VALUES ('clothing');
+
+INSERT INTO categories (name)
+VALUES ('accessories');
+
+INSERT INTO categories (name)
+VALUES ('electronics');
+
+INSERT INTO categories (name)
+VALUES ('personal');
+
+INSERT INTO categories (name)
+VALUES ('documents');
+
+INSERT INTO categories (name)
+VALUES ('first-aid');
+
+INSERT INTO categories (name)
+VALUES ('essentials');
+
+INSERT INTO categories (name)
+VALUES ('children');
+
+-- INSERT ITINERARY TYPES
+INSERT INTO itinerary_types (name)
+VALUES ('hotel');
+
+INSERT INTO itinerary_types (name)
+VALUES ('car rental');
+
+INSERT INTO itinerary_types (name)
+VALUES ('restaurant');
+
+INSERT INTO itinerary_types (name)
+VALUES ('vacation rental');
+
+INSERT INTO itinerary_types (name)
+VALUES ('flight');
+
+INSERT INTO itinerary_types (name)
+VALUES ('cruise');
+
+INSERT INTO itinerary_types (name)
+VALUES ('shopping');
+
+INSERT INTO itinerary_types (name)
+VALUES ('tour');
+
+INSERT INTO itinerary_types (name)
+VALUES ('activity');
+
+INSERT INTO itinerary_types (name)
+VALUES ('entertainment');
+
+INSERT INTO itinerary_types (name)
+VALUES ('event');
