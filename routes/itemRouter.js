@@ -15,4 +15,18 @@ itemRouter.post('/', (req, res, next) => {
         })
 });
 
+itemRouter.put('/:id', (req, res, next) => {
+    const { id } = req.params;
+    
+    ItemService.update(req.body, id)
+        .then(data => {
+            res.status(200);
+            res.json({success: `Updated Item #${id}`});
+        })
+        .catch(err => {
+            next(err);
+        })
+})
+
+
 module.exports = itemRouter;
