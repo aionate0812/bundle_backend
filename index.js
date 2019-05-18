@@ -7,9 +7,14 @@ const port = 5000
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-
 app.use(cors())
 
+const itineraryRouter = require('./routes/itineraryRouter')
+
+
+
+
+app.use('/itinerary', itineraryRouter)
 
 app.get('/', (req, res) => {
     res.send('hello')
