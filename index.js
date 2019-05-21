@@ -7,6 +7,7 @@ const port = 5000
 
 const tripRouter = require('./routes/tripRouter');
 const bagRouter = require('./routes/bagRouter');
+const weatherRouter = require('./routes/weatherRouter')
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -18,6 +19,7 @@ const itineraryRouter = require('./routes/itineraryRouter')
 
 
 app.use('/itinerary', itineraryRouter)
+app.use('/weather', weatherRouter)
 
 app.use('/trip', tripRouter);
 app.use('/bag', bagRouter);
