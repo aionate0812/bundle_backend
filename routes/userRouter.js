@@ -46,4 +46,4 @@ userRouter.get('/getUserByEmail', (req, res, next) => {
     .catch(err => next(err))
 });
 
-export userRouter;
+module.exports = userRouter;
