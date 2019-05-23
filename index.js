@@ -19,6 +19,7 @@ app.use(cors())
 app.use('/trip', tripRouter);
 app.use('/bag', bagRouter);
 app.use('/items', itemRouter);
+app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
     res.send('hello')
