@@ -30,4 +30,14 @@ UserService.readUserById = id => {
     return db.one(sql, { id });
 };
 
+UserService.readUserByEmail = email => {
+    const sql = `
+        SELECT *
+        FROM users
+        WHERE users.email = $[email]
+    `;
+
+    return db.one(sql, { email });
+};
+
 module.exports = UserService;
