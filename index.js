@@ -8,6 +8,7 @@ const port = 5000
 const tripRouter = require('./routes/tripRouter');
 const bagRouter = require('./routes/bagRouter');
 const itemRouter = require('./routes/itemRouter');
+const userRouter = require('./routes/userRouter');
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
