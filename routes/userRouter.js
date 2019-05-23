@@ -24,4 +24,15 @@ userRouter.get('/getUserByUid', (req, res, next) => {
     .catch(err => next(err))
 });
 
+userRouter.get('/getUserById', (req, res, next) => {
+    const { id } = req.params;
+
+    UserService.readUserById(id)
+    .then(data => {
+        res.status(200)
+        res.json(data)
+    })
+    .catch(err => next(err))
+});
+
 module.exports = userRouter;
