@@ -20,4 +20,14 @@ UserService.readUserByUid = uid => {
     return db.one(sql, { uid });
 };
 
+UserService.readUserById = id => {
+    const sql = `
+        SELECT *
+        FROM users
+        WHERE users.id = $[id]
+    `;
+
+    return db.one(sql, { id });
+};
+
 module.exports = UserService;
