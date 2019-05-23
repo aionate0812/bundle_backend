@@ -13,4 +13,15 @@ userRouter.post('/', (req, res, next) => {
     .catch(err => next(err))
 });
 
+userRouter.get('/getUserByUid', (req, res, next) => {
+    const { uid } = req.params;
+
+    UserService.readUserByUid(uid)
+    .then(data => {
+        res.status(200)
+        res.json(data)
+    })
+    .catch(err => next(err))
+});
+
 module.exports = userRouter;
