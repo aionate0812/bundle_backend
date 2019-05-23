@@ -35,4 +35,15 @@ userRouter.get('/getUserById', (req, res, next) => {
     .catch(err => next(err))
 });
 
+userRouter.get('/getUserByEmail', (req, res, next) => {
+    const { email } = req.params;
+
+    UserService.readUserByEmail(email)
+    .then(data => {
+        res.status(200)
+        res.json(data)
+    })
+    .catch(err => next(err))
+});
+
 module.exports = userRouter;
