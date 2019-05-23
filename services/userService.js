@@ -1,7 +1,6 @@
 const db = require('./dbConnect');
-const UserService = {};
 
-UserService.createUser = (uid, username, email) => {
+const createUser = (uid, username, email) => {
     const sql = `
         INSERT INTO users (uid, username, email)
         VALUES ($[uid], $[username], $[email])
@@ -10,7 +9,7 @@ UserService.createUser = (uid, username, email) => {
     return db.one(sql, { uid, username, email });
 };
 
-UserService.readUserByUid = uid => {
+const readUserByUid = uid => {
     const sql = `
         SELECT *
         FROM users
@@ -20,7 +19,7 @@ UserService.readUserByUid = uid => {
     return db.one(sql, { uid });
 };
 
-UserService.readUserById = id => {
+const readUserById = id => {
     const sql = `
         SELECT *
         FROM users
@@ -30,7 +29,7 @@ UserService.readUserById = id => {
     return db.one(sql, { id });
 };
 
-UserService.readUserByEmail = email => {
+const readUserByEmail = email => {
     const sql = `
         SELECT *
         FROM users
@@ -40,4 +39,9 @@ UserService.readUserByEmail = email => {
     return db.one(sql, { email });
 };
 
-module.exports = UserService;
+export {
+    createUser,
+    readUserByUid,
+    readUserById,
+    readUserByEmail
+};
