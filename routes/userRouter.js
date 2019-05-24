@@ -13,7 +13,7 @@ userRouter.post('/', (req, res, next) => {
     .catch(err => next(err))
 });
 
-userRouter.get('/getUserByUid', (req, res, next) => {
+userRouter.get('/getUserByUid/:uid', (req, res, next) => {
     const { uid } = req.params;
 
     UserService.readUserByUid(uid)
@@ -24,7 +24,7 @@ userRouter.get('/getUserByUid', (req, res, next) => {
     .catch(err => next(err))
 });
 
-userRouter.get('/getUserById', (req, res, next) => {
+userRouter.get('/getUserById/:id', (req, res, next) => {
     const { id } = req.params;
 
     UserService.readUserById(id)
@@ -35,7 +35,7 @@ userRouter.get('/getUserById', (req, res, next) => {
     .catch(err => next(err))
 });
 
-userRouter.get('/getUserByEmail', (req, res, next) => {
+userRouter.get('/getUserByEmail/:email', (req, res, next) => {
     const { email } = req.params;
 
     UserService.readUserByEmail(email)
