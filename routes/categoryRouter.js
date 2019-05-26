@@ -15,4 +15,15 @@ categoryRouter.get('/:id', (req, res, next) => {
         })
 });
 
+categoryRouter.get('/all', (req, res, next) => {
+    CategoryService.readAll()
+        .then(data => {
+            res.status(200);
+            res.json(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+});
+
 module.exports = categoryRouter;
