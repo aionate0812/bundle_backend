@@ -25,7 +25,7 @@ const update = (data, id) => {
     return db.none(sql, { ...data, id });
 };
 
-const deleteTodoList = (id) => {
+const deleteTodo = (id) => {
     const sql = `
     DELETE FROM todo t
     WHERE t.id = $[id]
@@ -37,5 +37,5 @@ const deleteTodoList = (id) => {
 module.exports = {
     create,
     update,
-    deleteTodoList
+    deleteTodo
 };
