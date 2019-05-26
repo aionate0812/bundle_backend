@@ -8,6 +8,7 @@ const port = 5000
 const tripRouter = require('./routes/tripRouter');
 const bagRouter = require('./routes/bagRouter');
 const itemRouter = require('./routes/itemRouter');
+const categoryRouter = require('./routes/categoryRouter');
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -18,6 +19,7 @@ app.use(cors())
 app.use('/trip', tripRouter);
 app.use('/bag', bagRouter);
 app.use('/items', itemRouter);
+app.use('/categories', categoryRouter);
 
 app.get('/', (req, res) => {
     res.send('hello')
