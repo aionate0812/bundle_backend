@@ -1,9 +1,9 @@
 const todoListRouter = require('express').Router();
-const { createTodoList, updateTodoList, deleteTodoList } = require('../services/todoListService');
+const { create } = require('../services/todoListService');
 
 todoListRouter.post('/', (req, res, next) => {
     const { name, trip_id } = req.body;
-    createTodoList(name, trip_id)
+    create(name, trip_id)
     .then(({ id }) => {
         res.status(200);
         res.json({
@@ -14,3 +14,5 @@ todoListRouter.post('/', (req, res, next) => {
         next(err)
     });
 });
+
+module.exports = todoListRouter;
