@@ -1,5 +1,5 @@
 const todoRouter = require('express').Router();
-const { create, update, deleteTodoList } = require('../services/todoService');
+const { create, update, deleteTodo } = require('../services/todoService');
 
 todoRouter.post('/', (req, res, next) => {
     const { task_name, complete, item_id, todolist_id } = req.body;
@@ -28,7 +28,7 @@ todoRouter.put('/:id', (req, res, next) => {
 
 todoRouter.delete('/:id', (req, res, next) => {
     const { id } = req.params;
-    deleteTodoList(id)
+    deleteTodo(id)
     .then(() => {
         res.status(200);
         res.json({
