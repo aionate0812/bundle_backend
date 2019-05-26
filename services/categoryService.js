@@ -10,4 +10,12 @@ CategoryService.read = (id) => {
     return db.one(sql, { id });
 }
 
+CategoryService.readAll = () => {
+    const sql = `
+    SELECT *
+    FROM categories c
+    `;
+    return db.any(sql);
+}
+
 module.exports = CategoryService;
