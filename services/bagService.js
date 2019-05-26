@@ -10,6 +10,14 @@ BagService.create = (trip_id, type_id) => {
     return db.one(sql, { trip_id, type_id });
 }
 
+BagService.read = (id) => {
+    const sql = `
+    SELECT * 
+    FROM bags b
+    WHERE b.id = $[id]
+    `
+}
+
 BagService.update = (data, id) => {
     const keys = Object.keys(data);
     let sql = 'UPDATE bags SET ';

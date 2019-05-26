@@ -15,6 +15,19 @@ bagRouter.post('/', (req, res, next) => {
         })
 });
 
+bagRouter.get('/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    BagService.read(id)
+        .then(data => {
+            res.status(200);
+            res.json(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+});
+
 bagRouter.put('/:id', (req, res, next) => {
     const { id } = req.params;
 
