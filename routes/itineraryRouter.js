@@ -9,7 +9,6 @@ itineraryRouter.get('/:trip_id', (req, res) => {
 
     itineraryService.getItinerary(trip_id)
     .then( itineraryData => {
-        console.log(itineraryData)
         res.json(itineraryData)
     }, err => {
         console.log(err)
