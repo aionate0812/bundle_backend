@@ -1,15 +1,15 @@
 const db = require('./dbConnect');
 
-export const createTodoList = (name, trip_id) => {
+const create = (name, trip_id) => {
     const sql = `
     INSERT INTO todolist (name, trip_id)
     VALUES ($[name], $[trip_id])
     RETURNING id;
     `;
     return db.one(sql, { name, trip_id });
-}
+};
 
-export const updateTodoList = (data, id) => {
+const update = (data, id) => {
     const keys = Object.keys(data);
     let sql = 'UPDATE todolist SET ';
 
@@ -25,11 +25,17 @@ export const updateTodoList = (data, id) => {
     return db.none(sql, { ...data, id });
 };
 
-export const deleteTodoList = (id) => {
+const deleteTodoList = (id) => {
     const sql = `
     DELETE FROM todolist t
     WHERE t.id = $[id]
     `;
     return db.none(sql, { id });
 
+};
+
+module.exports = {
+    create,
+    update,
+    deleteTodoList
 };
