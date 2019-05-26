@@ -31,7 +31,7 @@ bagRouter.put('/:id', (req, res, next) => {
 });
 
 bagRouter.delete('/:id', (req, res, next) => {
-    const { id } = req.oarams;
+    const { id } = req.params;
 
     BagService.delete(id)
     .then( () => {
@@ -40,7 +40,7 @@ bagRouter.delete('/:id', (req, res, next) => {
             message: 'bag successfully deleted',
         });
     })
-    .catchn( err => {
+    .catch( err => {
         next(err);
     });
 });
