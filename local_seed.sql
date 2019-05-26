@@ -38,6 +38,13 @@ CREATE TABLE bags
     FOREIGN KEY (type_id) REFERENCES bag_types(id)
 );
 
+CREATE TABLE flags 
+(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    description VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE categories
 (
     id SERIAL PRIMARY KEY,
@@ -49,7 +56,9 @@ CREATE TABLE items
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     packed BOOLEAN NOT NULL,
+    image VARCHAR(255) NULL,
     quantity INT NOT NULL,
+    flag_id INT NULL,
     bag_id INT NOT NULL,
     category_id INT NOT NULL,
     FOREIGN KEY (bag_id) REFERENCES bags(id),
