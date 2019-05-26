@@ -19,13 +19,28 @@ bagRouter.put('/:id', (req, res, next) => {
     const { id } = req.params;
 
     BagService.update(req.body, id) 
-    .then( _  => {
+    .then( ()  => {
         res.status(200);
         res.json({
-            message: 'update successful'
+            message: 'update successful',
         });
     })
     .catch( err => {
+        next(err);
+    });
+});
+
+bagRouter.delete('/:id', (req, res, next) => {
+    const { id } = req.oarams;
+
+    BagService.delete(id)
+    .then( () => {
+        res.status(200);
+        res.json({
+            message: 'bag successfully deleted',
+        });
+    })
+    .catchn( err => {
         next(err);
     });
 });
