@@ -2,7 +2,7 @@ const db = require('./dbConnect');
 
 const create = (task_name, complete = false, item_id, todolist_id) => {
     const sql = `
-    INSERT INTO todo (task_name, complete, item_id, todolist_id)
+    INSERT INTO todos (task_name, complete, item_id, todolist_id)
     VALUES ($[task_name], $[complete], $[item_id], $[todolist_id])
     RETURNING id;
     `;
@@ -11,7 +11,7 @@ const create = (task_name, complete = false, item_id, todolist_id) => {
 
 const update = (data, id) => {
     const keys = Object.keys(data);
-    let sql = 'UPDATE todo SET ';
+    let sql = 'UPDATE todos SET ';
 
     for (let i = 0; i < keys.length; i++) {
         if (keys[i] === 'id') continue;
@@ -27,7 +27,7 @@ const update = (data, id) => {
 
 const deleteTodo = (id) => {
     const sql = `
-    DELETE FROM todo t
+    DELETE FROM todos t
     WHERE t.id = $[id]
     `;
     return db.none(sql, { id });
