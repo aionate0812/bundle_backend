@@ -24,6 +24,15 @@ BagService.update = (data, id) => {
     };
     sql += 'WHERE id = $[id];';
     return db.none(sql, { ...data, id });
-}
+};
+
+BagService.delete = (id) => {
+    const sql = `
+    DELETE FROM bags b
+    WHERE b.id = $[id]
+    `;
+    return db.none(sql, { id });
+
+};
 
 module.exports = BagService;
