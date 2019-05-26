@@ -24,7 +24,6 @@ const itineraryRouter = require('./routes/itineraryRouter')
 
 app.use('/itinerary', itineraryRouter)
 app.use('/weather', weatherRouter)
-
 app.use('/trip', tripRouter);
 app.use('/bag', bagRouter);
 app.use('/items', itemRouter);

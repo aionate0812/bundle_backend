@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "11.10.1"
+deploy:
+  provider: heroku
+  api_key: $HEROKU_KEY
+  app: bundle_backend
+  on: master 
+  strategy: git
