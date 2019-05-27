@@ -35,6 +35,17 @@ TripService.updateTrip = (data, id) => {
     return db.none(sql, { ...data, id });
 }
 
+TripService.getAllListsByTripID = ( id ) => {
+    const sql = `
+        SELECT t.id AS trip_id, tl.id AS todolist_id, *
+        FROM trips t
+        JOIN todolist tl
+        ON t.id = tl.trip_id
+        WHERE t.id = $[id]
+    `
+    return db.any(sql, { id })
+};
+
 TripService.delete = (id) => {
     const sql = `
     DELETE FROM trips t
