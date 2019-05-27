@@ -42,8 +42,19 @@ TripService.getAllListsByTripID = ( id ) => {
         JOIN todolist tl
         ON t.id = tl.trip_id
         WHERE t.id = $[id]
-    `
-    return db.any(sql, { id })
+    `;
+    return db.any(sql, { id });
+};
+
+TripService.getAllBagsByTripID = ( id ) => {
+    const sql = `
+    SELECT *
+    FROM trips t
+    JOIN bags b
+    ON t.id = b.trip_id
+    WHERE t.id = $[id]
+    `;
+    return db.any(sql, { id });
 };
 
 TripService.delete = (id) => {
