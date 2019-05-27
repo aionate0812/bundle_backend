@@ -7,7 +7,14 @@ TripService.create = (name, country, city, departure_date, return_date, user_id)
     VALUES ($[name], $[country], $[city], $[departure_date], $[return_date], $[user_id])
     RETURNING id;
     `;
-    return db.one(sql, { name, country, city, departure_date, return_date, user_id });
+    return db.one(sql, {
+        name,
+        country,
+        city,
+        departure_date,
+        return_date,
+        user_id
+    });
 }
 
 TripService.read = (id) => {
@@ -16,7 +23,9 @@ TripService.read = (id) => {
     FROM trips t
     WHERE t.id = $[id]
     `;
-    return db.one(sql, { id });
+    return db.one(sql, {
+        id
+    });
 }
 
 TripService.updateTrip = (data, id) => {
@@ -32,10 +41,13 @@ TripService.updateTrip = (data, id) => {
         };
     };
     sql += 'WHERE id = $[id];';
-    return db.none(sql, { ...data, id });
+    return db.none(sql, {
+        ...data,
+        id
+    });
 }
 
-TripService.getAllListsByTripID = ( id ) => {
+TripService.getAllListsByTripID = (id) => {
     const sql = `
         SELECT t.id AS trip_id, tl.id AS todolist_id, tl.name
         FROM trips t
@@ -43,10 +55,12 @@ TripService.getAllListsByTripID = ( id ) => {
         ON t.id = tl.trip_id
         WHERE t.id = $[id]
     `;
-    return db.any(sql, { id });
+    return db.any(sql, {
+        id
+    });
 };
 
-TripService.getAllBagsByTripID = ( id ) => {
+TripService.getAllBagsByTripID = (id) => {
     const sql = `
     SELECT t.id AS trip_id, b.id AS bag_id, b.type_id
     FROM trips t
@@ -54,7 +68,9 @@ TripService.getAllBagsByTripID = ( id ) => {
     ON t.id = b.trip_id
     WHERE t.id = $[id]
     `;
-    return db.any(sql, { id });
+    return db.any(sql, {
+        id
+    });
 };
 
 TripService.delete = (id) => {
@@ -62,7 +78,9 @@ TripService.delete = (id) => {
     DELETE FROM trips t
     WHERE t.id = $[id]
     `;
-    return db.none(sql, { id });
+    return db.none(sql, {
+        id
+    });
 
 }
 
