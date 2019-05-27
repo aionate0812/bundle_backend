@@ -1,7 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 
-const config = require('../config.json'  || process.env.CONFIG)
+const config = require(process.env.CONFIG || '../config.json' )
 
 const weatherRouter = express.Router()
 
