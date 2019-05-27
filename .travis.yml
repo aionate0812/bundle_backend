@@ -4,6 +4,6 @@ node_js:
 deploy:
   provider: heroku
   api_key: $HEROKU_KEY
-  app: bundle_backend
+  app: bundle-backend
   on: master 
   strategy: git
