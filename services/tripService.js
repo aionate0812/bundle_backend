@@ -37,7 +37,7 @@ TripService.updateTrip = (data, id) => {
 
 TripService.getAllListsByTripID = ( id ) => {
     const sql = `
-        SELECT t.id AS trip_id, tl.id AS todolist_id, *
+        SELECT t.id AS trip_id, tl.id AS todolist_id, tl.name
         FROM trips t
         JOIN todolist tl
         ON t.id = tl.trip_id
@@ -48,7 +48,7 @@ TripService.getAllListsByTripID = ( id ) => {
 
 TripService.getAllBagsByTripID = ( id ) => {
     const sql = `
-    SELECT *
+    SELECT t.id AS trip_id, b.id AS bag_id, b.type_id
     FROM trips t
     JOIN bags b
     ON t.id = b.trip_id
