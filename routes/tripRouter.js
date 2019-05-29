@@ -19,8 +19,8 @@ tripRouter.post('/', (req, res, next) => {
 // This route retrieves a trip's basic bag and todolist info
 tripRouter.get('/init/:id', async (req, res, next) => {
     const { id } = req.params;
-    const tripDetails = TripService.read(id)
-    const allLists = TripService.getAllListsByTripID(id)
+    const tripDetails = TripService.read(id);
+    const allLists = TripService.getAllListsByTripID(id);
     const allBags = TripService.getAllBagsByTripID(id);
     try {
         const [trip, lists, bags] = await Promise.all([tripDetails, allLists, allBags]);
