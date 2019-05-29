@@ -28,7 +28,7 @@ tripRouter.get('/init/:id', async (req, res, next) => {
         res.json({trip, lists, bags});
     } catch (err) {
         next(err);
-    }
+    };
 });
 
 tripRouter.get('/:id', (req, res, next) => {
