@@ -16,7 +16,7 @@ TripService.read = (id) => {
     FROM trips t
     WHERE t.id = $[id]
     `;
-    return db.one(sql, { id });
+    return db.oneOrNone(sql, { id });
 }
 
 TripService.updateTrip = (data, id) => {
