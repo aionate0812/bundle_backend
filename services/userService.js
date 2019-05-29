@@ -39,7 +39,7 @@ const readUserByEmail = email => {
     return db.one(sql, { email });
 };
 
-export {
+module.exports = {
     createUser,
     readUserByUid,
     readUserById,
