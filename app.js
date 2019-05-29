@@ -10,7 +10,8 @@ const weatherRouter = require('./routes/weatherRouter')
 const itemRouter = require('./routes/itemRouter');
 const todoListRouter = require('./routes/todoListRouter');
 const categoryRouter = require('./routes/categoryRouter');
-const itineraryRouter = require('./routes/itineraryRouter')
+const itineraryRouter = require('./routes/itineraryRouter');
+const userRouter = require('./routes/userRouter');
 
 
 app.use(bodyParser.urlencoded({extended:false}))
@@ -24,6 +25,7 @@ app.use('/bag', bagRouter);
 app.use('/items', itemRouter);
 app.use('/todolist', todoListRouter);
 app.use('/categories', categoryRouter);
+app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
     res.send('hello world')
