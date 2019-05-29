@@ -7,7 +7,7 @@ TripService.create = (name, country, city, departure_date, return_date, user_id)
     VALUES ($[name], $[country], $[city], $[departure_date], $[return_date], $[user_id])
     RETURNING id;
     `;
-    return db.one(sql, {
+    return db.oneOrNone(sql, {
         name,
         country,
         city,
@@ -15,7 +15,7 @@ TripService.create = (name, country, city, departure_date, return_date, user_id)
         return_date,
         user_id
     });
-}
+};
 
 TripService.read = (id) => {
     const sql = `
@@ -23,10 +23,8 @@ TripService.read = (id) => {
     FROM trips t
     WHERE t.id = $[id]
     `;
-    return db.one(sql, {
-        id
-    });
-}
+    return db.oneOrNone(sql, { id });
+};
 
 TripService.updateTrip = (data, id) => {
     const keys = Object.keys(data);
@@ -41,11 +39,11 @@ TripService.updateTrip = (data, id) => {
         };
     };
     sql += 'WHERE id = $[id];';
-    return db.none(sql, {
+    return db.oneOrNone(sql, {
         ...data,
         id
     });
-}
+};
 
 TripService.getAllListsByTripID = (id) => {
     const sql = `
@@ -78,7 +76,7 @@ TripService.delete = (id) => {
     DELETE FROM trips t
     WHERE t.id = $[id]
     `;
-    return db.none(sql, {
+    return db.oneOrNone(sql, {
         id
     });
 
