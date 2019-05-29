@@ -16,7 +16,7 @@ BagService.read = (id) => {
     FROM bags b
     WHERE b.id = $[id]
     `
-    return db.one(sql, { id });
+    return db.oneOrNone(sql, { id });
 }
 
 BagService.update = (data, id) => {

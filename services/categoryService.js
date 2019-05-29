@@ -7,7 +7,7 @@ CategoryService.read = (id) => {
     FROM categories c
     WHERE c.id = $[id]
     `;
-    return db.one(sql, { id });
+    return db.oneOrNone(sql, { id });
 }
 
 CategoryService.readAll = () => {
