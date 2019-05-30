@@ -18,7 +18,13 @@ const read = (trip_id) => {
     return db.oneOrNone(sql, { trip_id })
 }
 
-
+const readAll = () => {
+    const sql =     `
+    SELECT *
+    FROM todolist tl
+    `
+    return db.oneOrNone(sql)
+}
 
 const update = (data, id) => {
     const keys = Object.keys(data);
