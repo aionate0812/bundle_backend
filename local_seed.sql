@@ -58,6 +58,7 @@ CREATE TABLE items
     packed BOOLEAN NOT NULL,
     image VARCHAR(255) NULL,
     quantity INT NOT NULL,
+    important BOOLEAN,
     flag_id INT NULL,
     bag_id INT NOT NULL,
     category_id INT NOT NULL,
@@ -88,6 +89,7 @@ CREATE TABLE todolist
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50),
+    list_type VARCHAR(20) NOT NULL,
     trip_id INT NOT NULL,
     FOREIGN KEY (trip_id) REFERENCES trips(id)
 );
