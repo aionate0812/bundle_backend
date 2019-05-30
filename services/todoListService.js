@@ -9,6 +9,17 @@ const create = (name, trip_id) => {
     return db.one(sql, { name, trip_id });
 };
 
+const read = (trip_id) => {
+    const sql =     `
+    SELECT *
+    FROM todolist tl
+    WHERE tdl.id = $[trip_id]
+    `
+    return db.oneOrNone(sql, { trip_id })
+}
+
+
+
 const update = (data, id) => {
     const keys = Object.keys(data);
     let sql = 'UPDATE todolist SET ';
