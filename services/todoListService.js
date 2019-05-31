@@ -1,19 +1,19 @@
 const db = require('./dbConnect');
 
-const create = (name, trip_id) => {
+const create = (name, trip_id, list_type) => {
     const sql = `
-    INSERT INTO todolist (name, trip_id)
-    VALUES ($[name], $[trip_id])
+    INSERT INTO todolist (name, trip_id, list_type)
+    VALUES ($[name], $[trip_id], $[list_type])
     RETURNING id;
     `;
-    return db.one(sql, { name, trip_id });
+    return db.one(sql, { name, trip_id, list_type });
 };
 
-const read = (trip_id) => {
+const read = (tdl_id) => {
     const sql =     `
     SELECT *
-    FROM todolist tl
-    WHERE tl.id = $[trip_id]
+    FROM todolist tdl
+    WHERE tdl.id = $[trip_id]
     `
     return db.oneOrNone(sql, { trip_id })
 }
@@ -49,8 +49,8 @@ const update = (data, id) => {
 
 const deleteTodoList = (id) => {
     const sql = `
-    DELETE FROM todolist t
-    WHERE t.id = $[id]
+    DELETE FROM todolist tdl
+    WHERE tdl.id = $[id]
     `;
     return db.none(sql, { id });
 
