@@ -44,6 +44,7 @@ const deleteTodo = (id) => {
 
 module.exports = {
     create,
+    readAll,
     update,
     deleteTodo
 };
