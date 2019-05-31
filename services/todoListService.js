@@ -13,7 +13,7 @@ const read = (trip_id) => {
     const sql =     `
     SELECT *
     FROM todolist tl
-    WHERE tdl.id = $[trip_id]
+    WHERE tl.id = $[trip_id]
     `
     return db.oneOrNone(sql, { trip_id })
 }
@@ -53,6 +53,7 @@ const deleteTodoList = (id) => {
 
 module.exports = {
     create,
+    read,
     update,
     deleteTodoList
 };
