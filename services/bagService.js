@@ -19,6 +19,17 @@ BagService.read = (id) => {
     return db.oneOrNone(sql, { id });
 }
 
+BagService.readAll = (id) => {
+    const sql = `
+    SELECT b.id AS bag_id, i.id AS item_id, * 
+    FROM bags b
+    JOIN items i
+    ON b.id = i.bag_id
+    WHERE b.id = $[id]
+    `
+    return db.any(sql, { id });
+}
+
 BagService.update = (data, id) => {
     const keys = Object.keys(data);
     let sql = 'UPDATE bags SET ';

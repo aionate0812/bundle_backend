@@ -15,7 +15,7 @@ const read = (tdl_id) => {
     FROM todolist tdl
     WHERE tdl.id = $[trip_id]
     `
-    return db.oneOrNone(sql, { trip_id })
+    return db.oneOrNone(sql, { tdl_id })
 }
 
 const readAllTodosFromList = (tdl_id) => {
@@ -26,7 +26,8 @@ const readAllTodosFromList = (tdl_id) => {
 	*
     FROM todolist tdl
 	JOIN todos tds
-	ON tdl.id = tds.todolist_id
+    ON tdl.id = tds.todolist_id
+    WHERE tdl_id = $[tdl_id]
     `
     return db.any(sql, { tdl_id })
 }
