@@ -54,6 +54,7 @@ const deleteTodoList = (id) => {
 module.exports = {
     create,
     read,
+    readAll,
     update,
     deleteTodoList
 };
