@@ -18,12 +18,17 @@ const read = (trip_id) => {
     return db.oneOrNone(sql, { trip_id })
 }
 
-const readAll = () => {
+const readAllTodosFromList = (tdl_id) => {
     const sql =     `
-    SELECT *
-    FROM todolist tl
+    SELECT 
+	tdl.id AS tdl_id,
+	tds.id AS tds_id, 
+	*
+    FROM todolist tdl
+	JOIN todos tds
+	ON tdl.id = tds.todolist_id
     `
-    return db.any(sql)
+    return db.any(sql, { tdl_id })
 }
 
 const update = (data, id) => {
@@ -54,7 +59,7 @@ const deleteTodoList = (id) => {
 module.exports = {
     create,
     read,
-    readAll,
+    readAllTodosFromList,
     update,
     deleteTodoList
 };
