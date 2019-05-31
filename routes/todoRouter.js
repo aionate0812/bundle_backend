@@ -7,7 +7,7 @@ todoRouter.post('/', (req, res, next) => {
     .then(({ id }) => {
         res.status(200);
         res.json({
-             id,
+            id,
         });
     })
     .catch(err => {
@@ -24,6 +24,9 @@ todoRouter.put('/:id', (req, res, next) => {
             message: `Task ${id} updated.`
         })
     })
+    .catch(err => {
+        next(err)
+    });
 });
 
 todoRouter.delete('/:id', (req, res, next) => {

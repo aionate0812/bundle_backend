@@ -1,21 +1,44 @@
 const todoListRouter = require('express').Router();
-const { create, update, deleteTodoList } = require('../services/todoListService');
+const { create, read, readAllTodosFromList, update, deleteTodoList } = require('../services/todoListService');
 const todoRouter = require('./todoRouter');
 
 todoListRouter.use('/todo', todoRouter);
 
 todoListRouter.post('/', (req, res, next) => {
-    const { name, trip_id } = req.body;
-    create(name, trip_id)
+    const { name, trip_id, list_type } = req.body;
+    create(name, trip_id, list_type)
     .then(({ id }) => {
         res.status(200);
         res.json({
-             id,
+            id,
         });
     })
     .catch(err => {
         next(err)
     });
+});
+
+todoListRouter.get('/:tdl_id/all', (req, res, next) => {
+    readAllTodosFromList()
+        .then((data) => {
+            res.status(200);
+            res.json(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+})
+
+todoListRouter.get('/:tdl_id', (req, res, next) => {
+    const { tdl_id } = req.params;
+    read(tdl_id)
+        .then((data) => {
+            res.status(200);
+            res.json(data)
+        })
+        .catch(err => {
+            next(err)
+        });
 });
 
 todoListRouter.put('/:id', (req, res, next) => {
