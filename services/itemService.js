@@ -26,5 +26,14 @@ ItemService.update = (data, id) => {
     return db.none(sql, { ...data, id });
 }
 
+ItemService.delete = (id) => {
+    const sql = `
+    DELETE FROM items i
+    WHERE i.id = $[id]
+    `;
+    return db.oneOrNone(sql, { id });
+
+};
+
 
 module.exports = ItemService;
