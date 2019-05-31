@@ -27,7 +27,7 @@ const readAllTodosFromList = (tdl_id) => {
     FROM todolist tdl
 	JOIN todos tds
     ON tdl.id = tds.todolist_id
-    WHERE tdl_id = $[tdl_id]
+    WHERE tdl.id = $[tdl_id]
     `
     return db.any(sql, { tdl_id })
 }

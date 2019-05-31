@@ -19,7 +19,8 @@ todoListRouter.post('/', (req, res, next) => {
 });
 
 todoListRouter.get('/:tdl_id/all', (req, res, next) => {
-    readAllTodosFromList()
+    const { tdl_id } = req.params;
+    readAllTodosFromList(tdl_id)
         .then((data) => {
             res.status(200);
             res.json(data);
