@@ -23,7 +23,7 @@ const readAll = () => {
     SELECT *
     FROM todolist tl
     `
-    return db.oneOrNone(sql)
+    return db.any(sql)
 }
 
 const update = (data, id) => {
