@@ -139,6 +139,9 @@ VALUES ('essentials');
 INSERT INTO categories (name)
 VALUES ('children');
 
+INSERT INTO categories (name)
+VALUES ('misc');
+
 -- INSERT ITINERARY TYPES
 INSERT INTO itinerary_types (name)
 VALUES ('hotel');
