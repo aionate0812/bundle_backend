@@ -9,14 +9,6 @@ const create = (task_name, complete = false, item_id, todolist_id) => {
     return db.one(sql, { task_name, complete, item_id, todolist_id });
 };
 
-const readAll = () => {
-    const sql = `
-    SELECT *
-    FROM todos
-    `;
-    return db.any(sql);
-};
-
 const update = (data, id) => {
     const keys = Object.keys(data);
     let sql = 'UPDATE todos SET ';
@@ -44,7 +36,6 @@ const deleteTodo = (id) => {
 
 module.exports = {
     create,
-    readAll,
     update,
     deleteTodo
 };
