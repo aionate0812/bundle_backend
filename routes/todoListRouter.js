@@ -18,8 +18,8 @@ todoListRouter.post('/', (req, res, next) => {
     });
 });
 
-todoListRouter.get('/all', (req, res, next) => {
-    readAll()
+todoListRouter.get('/:tdl_id/all', (req, res, next) => {
+    readAllTodosFromList()
         .then((data) => {
             res.status(200);
             res.json(data);
@@ -29,9 +29,9 @@ todoListRouter.get('/all', (req, res, next) => {
         })
 })
 
-todoListRouter.get('/:id', (req, res, next) => {
-    const { trip_id } = req.body;
-    read(trip_id)
+todoListRouter.get('/:tdl_id', (req, res, next) => {
+    const { tdl_id } = req.params;
+    read(tdl_id)
         .then((data) => {
             res.status(200);
             res.json(data)
