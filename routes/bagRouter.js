@@ -43,6 +43,19 @@ bagRouter.put('/:id', (req, res, next) => {
     });
 });
 
+bagRouter.get('/:id/all', (req, res, next) => {
+    const { id } = req.params;
+
+    BagService.readAll(id)
+        .then(data => {
+            res.status(200);
+            res.json(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+});
+
 bagRouter.delete('/:id', (req, res, next) => {
     const { id } = req.params;
 
