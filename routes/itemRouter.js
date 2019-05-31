@@ -28,5 +28,21 @@ itemRouter.put('/:id', (req, res, next) => {
         })
 })
 
+itemRouter.delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+    
+    ItemService.delete(id)
+        .then(data => {
+            res.status(200);
+            res.json({
+                success: `Deleted Item #${id}`,
+                result: data
+        });
+        })
+        .catch(err => {
+            next(err);
+        })
+});
+
 
 module.exports = itemRouter;
