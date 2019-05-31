@@ -1,5 +1,5 @@
 const todoRouter = require('express').Router();
-const { create, readAll, update, deleteTodo } = require('../services/todoService');
+const { create, update, deleteTodo } = require('../services/todoService');
 
 todoRouter.post('/', (req, res, next) => {
     const { task_name, complete, item_id, todolist_id } = req.body;
@@ -7,23 +7,12 @@ todoRouter.post('/', (req, res, next) => {
     .then(({ id }) => {
         res.status(200);
         res.json({
-             id,
+            id,
         });
     })
     .catch(err => {
         next(err)
     });
-});
-
-todoRouter.get('/all', (req, res, next) => {
-    readAll()
-        .then((data) => {
-            res.status(200);
-            res.json(data);
-        })
-        .catch(err => {
-            next(err)
-        });
 });
 
 todoRouter.put('/:id', (req, res, next) => {
@@ -35,6 +24,9 @@ todoRouter.put('/:id', (req, res, next) => {
             message: `Task ${id} updated.`
         })
     })
+    .catch(err => {
+        next(err)
+    });
 });
 
 todoRouter.delete('/:id', (req, res, next) => {
