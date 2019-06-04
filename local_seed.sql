@@ -59,7 +59,7 @@ CREATE TABLE items
     image VARCHAR(255) NULL,
     quantity INT NOT NULL,
     important BOOLEAN,
-    flag_id INT NULL,
+    flag BOOLEAN NULL,
     bag_id INT NOT NULL,
     shop BOOLEAN NULL,
     category_id INT NOT NULL,
