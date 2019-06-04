@@ -61,6 +61,7 @@ CREATE TABLE items
     important BOOLEAN,
     flag_id INT NULL,
     bag_id INT NOT NULL,
+    shop BOOLEAN NULL,
     category_id INT NOT NULL,
     FOREIGN KEY (bag_id) REFERENCES bags(id),
     FOREIGN KEY (category_id) REFERENCES categories(id)
