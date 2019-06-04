@@ -98,7 +98,7 @@ CREATE TABLE todolist
 CREATE TABLE todos
 (
     id SERIAL PRIMARY KEY,
-    task_name VARCHAR(50),
+    task_name VARCHAR(75),
     complete BOOLEAN NOT NULL,
     item_id INT NULL,
     todolist_id INT NOT NULL,
