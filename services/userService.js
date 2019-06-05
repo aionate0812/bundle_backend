@@ -16,7 +16,7 @@ const readUserByUid = uid => {
         WHERE users.uid = $[uid]
     `;
 
-    return db.one(sql, { uid });
+    return db.oneOrNone(sql, { uid });
 };
 
 const readUserById = id => {

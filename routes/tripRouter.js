@@ -7,7 +7,11 @@ tripRouter.post('/', (req, res, next) => {
     const { name, country, city, departure_date, return_date, user_uid } = req.body;
     userService.readUserByUid(user_uid)
     .then(user => {
-        return TripService.create(name, country, city, departure_date, return_date, user.id)
+        if (user) {
+            return TripService.create(name, country, city, departure_date, return_date, user.id) 
+        } else {
+            return TripService.create(name, country, city, departure_date, return_date, null)
+        }
     })
     .then(({ id }) => {
                 res.status(200);
