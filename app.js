@@ -12,6 +12,7 @@ const todoListRouter = require("./routes/todoListRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const itineraryRouter = require("./routes/itineraryRouter");
 const userRouter = require("./routes/userRouter");
+const loginHomepageRouter = require('./routes/loginHomepageRouter')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,6 +26,7 @@ app.use("/items", itemRouter);
 app.use("/todolist", todoListRouter);
 app.use("/categories", categoryRouter);
 app.use("/user", userRouter);
+app.use("/login_homepage", loginHomepageRouter);
 
 app.get("/", (req, res) => {
   res.send("hello world");

@@ -1,19 +1,27 @@
 const express = require('express');
 const tripRouter = express.Router();
 const TripService = require('../services/tripService');
-
+const userService = require('../services/userService')
 
 tripRouter.post('/', (req, res, next) => {
-    const { name, country, city, departure_date, return_date, user_id } = req.body;
-
-    TripService.create(name, country, city, departure_date, return_date, user_id)
-        .then(({ id }) => {
-            res.status(200);
-            res.json({ id });
-        })
-        .catch(err => {
-            next(err);
-        })
+    const { name, country, city, departure_date, return_date, user_uid } = req.body;
+    userService.readUserByUid(user_uid)
+    .then(user => {
+        if (user) {
+            return TripService.create(name, country, city, departure_date, return_date, user.id) 
+        } else {
+            return TripService.create(name, country, city, departure_date, return_date, null)
+        }
+    })
+    .then(({ id }) => {
+                res.status(200);
+                res.json({ id });
+            })
+            .catch(err => {
+                console.log(err)
+                next(err);
+            })
+    
 });
 
 // This route retrieves a trip's basic bag and todolist info
