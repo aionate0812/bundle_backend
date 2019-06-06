@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "$(npm bin)/jest --coverage",
-    "start": "node index.js"
+    "start": "node index.js",
+    "create config":"echo \"{\"dba\":\"$dba\", \"DARKSKY_API_KEY\":\"$DARKSKY_API_KEY\"}\" >> config.json"
   },
   "keywords": [],
   "author": "",
