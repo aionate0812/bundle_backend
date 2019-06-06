@@ -5,8 +5,8 @@ DROP TABLE IF EXISTS bags;
 DROP TABLE IF EXISTS flags;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS items;
-DROP TABLE IF EXISTS itinerary_types;
 DROP TABLE IF EXISTS itinerary;
+DROP TABLE IF EXISTS itinerary_types;
 DROP TABLE IF EXISTS todolist;
 DROP TABLE IF EXISTS todos;
 
@@ -65,8 +65,10 @@ CREATE TABLE items
     packed BOOLEAN NOT NULL,
     image VARCHAR(255) NULL,
     quantity INT NOT NULL,
-    flag_id INT NULL,
+    important BOOLEAN,
+    flag BOOLEAN NULL,
     bag_id INT NOT NULL,
+    shop BOOLEAN NULL,
     category_id INT NOT NULL,
     FOREIGN KEY (bag_id) REFERENCES bags(id),
     FOREIGN KEY (category_id) REFERENCES categories(id)
@@ -95,6 +97,7 @@ CREATE TABLE todolist
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50),
+    list_type VARCHAR(20) NOT NULL,
     trip_id INT NOT NULL,
     FOREIGN KEY (trip_id) REFERENCES trips(id)
 );
@@ -102,7 +105,7 @@ CREATE TABLE todolist
 CREATE TABLE todos
 (
     id SERIAL PRIMARY KEY,
-    task_name VARCHAR(50),
+    task_name VARCHAR(75),
     complete BOOLEAN NOT NULL,
     item_id INT NULL,
     todolist_id INT NOT NULL,
@@ -143,6 +146,9 @@ VALUES ('essentials');
 
 INSERT INTO categories (name)
 VALUES ('children');
+
+INSERT INTO categories (name)
+VALUES ('misc');
 
 -- INSERT ITINERARY TYPES
 INSERT INTO itinerary_types (name)
