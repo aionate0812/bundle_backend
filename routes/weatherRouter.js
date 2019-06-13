@@ -10,7 +10,7 @@ weatherRouter.get('/', async (req, res) => {
     
     const weather = await axios({
         method:'get',
-        url:`https://api.darksky.net/forecast/${config.DARKSKY_API_KEY}/${lat},${lng}`
+        url:`https://api.darksky.net/forecast/${process.env.DARKSKY_API || config.DARKSKY_API_KEY}/${lat},${lng}`
     }) 
         res.json(weather.data.daily)
 })
