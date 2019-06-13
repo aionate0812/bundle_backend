@@ -183,3 +183,5 @@ VALUES ('entertainment');
 
 INSERT INTO itinerary_types (name)
 VALUES ('event');
+
+SELECT * FROM todolist; 
