@@ -48,9 +48,10 @@ tripRouter.post('/v2', async (req, res, next) => {
         user_uid,
         items,
     } = req.body;
+    // if a user_uid was passed in, fetch their id using userServices
     const user = user_uid ? await userService.readUserByUid(user_uid) : null;
     try {
-        // if the user exists, create a trip with their id
+        // if the user exists in our DB, create a NEW trip with their id
         const {
             id: trip_id
         } = user ? await TripService.create(name, country, city, departure_date, return_date, user.id) : await TripService.create(name, country, city, departure_date, return_date, null)
@@ -75,7 +76,7 @@ tripRouter.post('/v2', async (req, res, next) => {
             children: 8,
             misc: 4
         };
-        // create all the items the user selected
+        // create all the items the user selected using the bag ids created above
         for (let category of categories) {
             for (let e of items[category]) {
                 if (e.pack) {
