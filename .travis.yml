@@ -6,6 +6,7 @@ before_script:
   - export DARKSKY_API_KEY=$DARKSKY_API_KEY
   - export HEROKU_KEY=$HEROKU_KEY
 script:
+  - npm start
   - npm run config-file
   - npm test
 deploy:
