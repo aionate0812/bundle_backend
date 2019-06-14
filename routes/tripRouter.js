@@ -51,7 +51,7 @@ tripRouter.post('/', async (req, res, next) => {
                     if (e.bag_type === "personal") {
                         const {
                             id
-                        } = await ItemService.create(e.name, false, e.quantity, personal_id, categoryObj[e.category])
+                        } = await ItemService.create(e.name, false, e.quantity, personal_id, categoryObj[e.category], e.image)
                         itemsArr.push({
                             name: e.name,
                             id,
@@ -60,7 +60,7 @@ tripRouter.post('/', async (req, res, next) => {
                     if (e.bag_type === "carry-on") {
                         const {
                             id
-                        } = await ItemService.create(e.name, false, e.quantity, carry_on_id, categoryObj[e.category])
+                        } = await ItemService.create(e.name, false, e.quantity, carry_on_id, categoryObj[e.category], e.image)
                         itemsArr.push({
                             name: e.name,
                             id,
@@ -69,7 +69,7 @@ tripRouter.post('/', async (req, res, next) => {
                     if (e.bag_type === "checked") {
                         const {
                             id
-                        } = await ItemService.create(e.name, false, e.quantity, checked_id, categoryObj[e.category])
+                        } = await ItemService.create(e.name, false, e.quantity, checked_id, categoryObj[e.category], e.image)
                         itemsArr.push({
                             name: e.name,
                             id,
