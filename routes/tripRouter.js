@@ -5,40 +5,8 @@ const userService = require('../services/userService');
 const BagService = require("../services/bagService");
 const ItemService = require('../services/itemService');
 
-tripRouter.post('/', (req, res, next) => {
-    const {
-        name,
-        country,
-        city,
-        departure_date,
-        return_date,
-        user_uid
-    } = req.body;
-    userService.readUserByUid(user_uid)
-        .then(user => {
-            if (user) {
-                return TripService.create(name, country, city, departure_date, return_date, user.id)
-            } else {
-                return TripService.create(name, country, city, departure_date, return_date, null)
-            }
-        })
-        .then(({
-            id
-        }) => {
-            res.status(200);
-            res.json({
-                id
-            });
-        })
-        .catch(err => {
-            console.log(err)
-            next(err);
-        })
-
-});
-
 //trip creation v2, handles every aspect of the trip creation from one route
-tripRouter.post('/v2', async (req, res, next) => {
+tripRouter.post('/', async (req, res, next) => {
     const {
         name,
         city,
