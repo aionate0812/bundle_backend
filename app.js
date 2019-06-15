@@ -14,9 +14,10 @@ const itineraryRouter = require("./routes/itineraryRouter");
 const userRouter = require("./routes/userRouter");
 const loginHomepageRouter = require('./routes/loginHomepageRouter')
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+
 
 app.use("/itinerary", itineraryRouter);
 app.use("/weather", weatherRouter);
