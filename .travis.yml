@@ -1,9 +1,14 @@
 language: node_js
 node_js:
   - "11.10.1"
+before_script:
+  - export DARKSKY_API_KEY=$DARKSKY_API_KEY
+  - export HEROKU_KEY=$HEROKU_KEY
+script:
+  - npm test
 deploy:
   provider: heroku
   api_key: $HEROKU_KEY
-  app: bundle-backend
+  app: mysterious-coast-95538
   on: master 
   strategy: git
