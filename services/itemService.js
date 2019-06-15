@@ -1,13 +1,13 @@
 const db = require('./dbConnect');
 const ItemService = {};
 
-ItemService.create = (name, packed, quantity, bag_id, category_id, important = false) => {
+ItemService.create = (name, packed, quantity, bag_id, category_id, image, important = false) => {
 const sql = `
-INSERT INTO items (name, packed, quantity, bag_id, category_id, important)
-VALUES ($[name], $[packed], $[quantity], $[bag_id], $[category_id], $[important])
+INSERT INTO items (name, packed, quantity, bag_id, category_id, image, important)
+VALUES ($[name], $[packed], $[quantity], $[bag_id], $[category_id], $[image], $[important])
 RETURNING id;
 `
-return db.one(sql, { name, packed, quantity, bag_id, category_id, important })
+return db.one(sql, { name, packed, quantity, bag_id, category_id, image, important })
 }
 
 ItemService.update = (data, id) => {
