@@ -2,7 +2,6 @@ language: node_js
 node_js:
   - "11.10.1"
 before_script:
-  - export dba=$dba
   - export DARKSKY_API_KEY=$DARKSKY_API_KEY
   - export HEROKU_KEY=$HEROKU_KEY
 script:
