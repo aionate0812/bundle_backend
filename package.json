@@ -6,7 +6,7 @@
   "scripts": {
     "test": "$(npm bin)/jest --coverage",
     "start": "node index.js",
-    "config-file":"echo export const dba = \"${dba}\"; export const DARKSKY_API_KEY = \"${DARKSKY_API_KEY}\"; > config.js"
+    "config-file":"echo module.exports = {dba:\"$dba\" ,DARKSKY_API_KEY:\"$DARKSKY_API_KEY\"} > config.js"
   },
   "keywords": [],
   "author": "",
